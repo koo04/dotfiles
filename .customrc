@@ -1,0 +1,16 @@
+# export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
+# export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin/:$HOME/android-studio/bin
+# export GOPRIVATE=github.com/myprizepicks/*
+
+# export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
+
+# export ANDROID_HOME=$HOME/Android/Sdk
+# export PATH=$PATH:$ANDROID_HOME/emulator
+# export PATH=$PATH:$ANDROID_HOME/platform-tools
+# export TEST_DATABASE_URL="postgresql://postgres:password@localhost:5432/predict-picks-test"
+
+# alias pgadmin="cd ~/git/prizepicks-devenv && docker compose up -d pgadmin"
+# alias ppup="cd ~/git/prizepicks-devenv && docker compose up -d && lazydocker"
+# alias ppdown="cd ~/git/prizepicks-devenv && docker compose down"
+# alias mini="cd ~/git/mini && ./start"
+# alias notes="cd ~/notes && micro"

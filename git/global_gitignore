@@ -1,0 +1,4 @@
+endpoints.http
+.vscode/launch.json
+.vscode/tasks.json
+__debug*

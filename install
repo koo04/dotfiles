@@ -1,0 +1,53 @@
+#!/bin/bash
+
+sudo apt-get update
+sudo apt-get install wget git curl
+
+wget https://go.dev/dl/go1.24.1.linux-amd64.tar.gz -O /tmp/go.tar.gz
+sudo rm -rf /usr/local/go && sudo tar -C /usr/local -xzf /tmp/go.tar.gz
+
+echo '. "$HOME/.bashrc"' >> $HOME/.bashrc
+
+source $HOME/.profile
+
+go install github.com/charmbracelet/gum@latest
+
+echo "Would you like to upgrade software (apt upgrade)?"
+gum confirm && sudo apt-get upgrade -y || echo "Skipped"
+
+sudo apt-get install tmux btop
+
+installDocker=false
+echo "Would you like to install Docker?"
+gum confirm && $installDocker=true || $installDocker=false
+
+if [ "$installDocker" = true ]; then
+  # Add Docker's official GPG key:
+  sudo apt-get update
+  sudo apt-get install ca-certificates curl
+  sudo install -m 0755 -d /etc/apt/keyrings
+  sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+  sudo chmod a+r /etc/apt/keyrings/docker.asc
+
+  # Add the repository to Apt sources:
+  echo \
+    "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
+    $(. /etc/os-release && echo "${UBUNTU_CODENAME:-$VERSION_CODENAME}") stable" | \
+    sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+  sudo apt-get update
+fi
+
+curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz -o /tmp/nvim.tar.gz
+sudo rm -rf /opt/nvim
+sudo tar -C /opt -xzf /tmp/nvim.tar.gz
+
+ln -s ${cwd}/nvim $HOME/.config/nvim
+ln -s ${cwd}/tmux/tmux.conf $HOME/.tmux.conf
+ln -s ${cwd}/git/global_gitingore $HOME/.gitignore
+
+git config --global core.excludesfile ~/.gitignore
+git config --global user.name Douglas DeVicariis
+git config --global user.email douglas@devicariis.org
+git config --global url.ssh://git@github.com/.insteadof https://github.com/
+git config --global remote.origin.prune true
+
