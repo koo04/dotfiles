@@ -1,7 +1,6 @@
 # Programs to install
 # Format: program_name:install_method:description
 # install_method can be: apt, snap, curl, go, manual
-github-cli:manual:GitHub CLI for repository management
 docker:manual:Docker container platform
 neovim:manual:Modern Vim-based editor
 teleport:curl:Secure access plane for infrastructure
@@ -18,3 +17,4 @@ tree:apt:Directory tree display
 htop:apt:Interactive process viewer
 jq:apt:JSON processor
 xclip:apt:System to neovim clipboard
+fd-find:apt:Find entries in filesystem

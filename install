@@ -117,9 +117,6 @@ install_manual_program() {
     local program="$1"
     
     case $program in
-        "github-cli")
-            install_github_cli
-            ;;
         "docker")
             install_docker
             ;;
