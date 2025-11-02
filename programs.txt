@@ -1,0 +1,18 @@
+# Programs to install
+# Format: program_name:install_method:description
+# install_method can be: apt, snap, curl, go, manual
+docker:manual:Docker container platform
+neovim:manual:Modern Vim-based editor
+teleport:curl:Secure access plane for infrastructure
+k9s:curl:Kubernetes CLI and TUI
+tmux:apt:Terminal multiplexer
+btop:apt:Modern resource monitor
+curl:apt:Command line tool for transferring data
+wget:apt:Network downloader
+git:apt:Version control system
+ca-certificates:apt:Certificate authorities
+build-essential:apt:Essential build tools
+unzip:apt:Archive extraction utility
+tree:apt:Directory tree display
+htop:apt:Interactive process viewer
+jq:apt:JSON processor
