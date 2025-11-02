@@ -339,20 +339,29 @@ main() {
             for i in "${!programs[@]}"; do
                 if [[ "${programs[$i]}" == "$selected" ]]; then
                     echo ""
-                    gum spin --spinner dot --title "Installing $selected (${descriptions[$i]})" -- \
-                        bash -c "install_program '$selected' '${methods[$i]}' '${descriptions[$i]}'"
+                    echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+                    log "Installing $selected (${descriptions[$i]})"
+                    echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+                    
+                    set +e  # Temporarily disable exit on error
+                    if install_program "$selected" "${methods[$i]}" "${descriptions[$i]}"; then
+                        echo -e "${GREEN}✓${NC} Successfully installed $selected"
+                    else
+                        echo -e "${RED}✗${NC} Failed to install $selected"
+                    fi
+                    set -e  # Re-enable exit on error
                     break
                 fi
             done
         done
     fi
-    
+
     # Create symbolic links
     echo ""
     if gum confirm "Create symbolic links for dotfiles?"; then
         create_symlinks
     fi
-    
+
     # Configure git
     echo ""
     if gum confirm "Configure Git with your settings?"; then
@@ -377,4 +386,3 @@ main() {
 
 # Run main function
 main "$@"
-
