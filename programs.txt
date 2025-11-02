@@ -16,3 +16,4 @@ unzip:apt:Archive extraction utility
 tree:apt:Directory tree display
 htop:apt:Interactive process viewer
 jq:apt:JSON processor
+xclip:apt:System to neovim clipboard
